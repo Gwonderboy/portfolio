@@ -1,0 +1,77 @@
+.primary_Btn {
+  position: relative;
+  background: transparent !important;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #fff !important;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0 !important;
+}
+
+.primary_Btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.primary_Btn:hover::after {
+  width: 100%;
+}
+
+.primary_Btn:hover {
+  color: #fff; /* Optional color change on hover */
+}
+
+.circle-lines::before {
+  content: "";
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  clip-path: inset(0 0 0 50%);
+  pointer-events: none;
+}
+
+.circle-lines::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 140%;
+  height: 140%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  clip-path: inset(0 0 0 50%);
+  pointer-events: none;
+}
+
+.quater-circle-lines::before {
+  content: "";
+  position: absolute;
+  top: 75px;
+  left: 100px;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  clip-path: inset(0 50% 50% 0);
+}
+
+.quater-circle-lines::after {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: -5px;
+  width: 140%;
+  height: 140%;
+  border: 2px solid rgba(255, 255, 255, 0.03);
+  border-radius: 50%;
+  clip-path: inset(0 50% 50% 0);
+}

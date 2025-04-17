@@ -1,103 +1,225 @@
+"use client";
+
+import { allCategories, company, slides } from "@/_data";
+import PrimaryButton from "@/components/button/primaryBtn";
+import Carousel from "@/components/Carousel";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/navbar";
+import ProfileSection from "@/components/ProfileSection";
+import SkillCategory from "@/components/SkillCategory";
+import WelcomeMessage from "@/components/welcomeText";
+import { PROJECTS_ROUTE } from "@/constants/routes";
+import {
+  Box,
+  Button,
+  Flex,
+  HStack,
+  Icon,
+  Link,
+  SimpleGrid,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import Image from "next/image";
+import { useState } from "react";
+import { FaArrowRight } from "react-icons/fa6";
+import {
+  MdHub,
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from "react-icons/md";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [currentPage, setCurrentPage] = useState(0);
+  const [current, setCurrent] = useState(0);
+  const itemsPerPage = 3;
+  const itemPerPage = 2;
+  const totalItemPages = Math.ceil(slides.length / itemPerPage);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % totalItemPages);
+  };
+  const prevSlide = () => {
+    setCurrent((prev) => (prev === 0 ? totalItemPages - 1 : prev - 1));
+  };
+  const totalPages = Math.ceil(allCategories.length / itemsPerPage);
+
+  const slideWidth = 280 + 32;
+
+  return (
+    <Box>
+      <Navbar />
+      <Flex
+        bg="pimary"
+        minH="100vh"
+        alignItems="center"
+        justifyContent="space-between"
+        px={{ base: 6, md: 20, lg: 40 }}
+        py={{ base: 5, md: 10 }}
+        color="white"
+        position="relative"
+        flexDir={{ base: "column", md: "row" }}
+      >
+        <WelcomeMessage />
+        <ProfileSection />
+      </Flex>
+      <Box
+        as="section"
+        background={"secondary"}
+        display={"flex"}
+        alignItems="center"
+        justifyContent="space-between"
+        color="white"
+        flexDir={{ base: "column", md: "row" }}
+      >
+        <Box
+          background={"background"}
+          w={{ base: "100%", md: "80%" }}
+          px={{ base: 6, md: 20, lg: 40 }}
+          py={{ base: 5, md: 16 }}
+          display={"flex"}
+          flexDir={"column"}
+          gap={10}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+          <Text color={"accent1"}>|| Special Skills</Text>
+          <Text fontSize="6xl" fontWeight="bold" color="white">
+            My Special Skill Field Here.
+          </Text>
+          <Box overflow="hidden" w="full">
+            <Flex
+              gap={8}
+              transform={`translateX(-${
+                currentPage * itemsPerPage * slideWidth
+              }px)`}
+              transition="transform 0.5s ease-in-out"
+            >
+              {allCategories.map((category, index) => (
+                <SkillCategory
+                  key={index}
+                  icon={category.icon}
+                  title={category.title}
+                  skills={category.skills}
+                />
+              ))}
+            </Flex>
+          </Box>
+        </Box>
+        <Box w={{ base: "100%", md: "20%" }} p={4}>
+          <VStack justify="center" mt={6} gap={8}>
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <Box
+                key={idx}
+                w={3}
+                h={3}
+                borderRadius="full"
+                bg={idx === currentPage ? "white" : "gray.500"}
+                cursor="pointer"
+                onClick={() => setCurrentPage(idx)}
+                transition="background 0.3s"
+              />
+            ))}
+          </VStack>
+        </Box>
+      </Box>
+      <Box
+        as="section"
+        background={"primary"}
+        display={"flex"}
+        alignItems="center"
+        justifyContent="space-between"
+        color="white"
+        flexDir={{ base: "column" }}
+        position="relative"
+        zIndex={1}
+        px={{ base: 6, md: 20, lg: 40 }}
+        py={{ base: 5, md: 16 }}
+        w={"full"}
+        gap={10}
+      >
+        <Flex justifyContent={"space-between"} mb={10} w={"full"}>
+          <VStack align={"flex-start"}>
+            <Text color={"accent1"}>|| Awesome Portfolio</Text>
+            <Text fontSize="6xl" fontWeight="bold" color="white">
+              My Projects
+            </Text>
+          </VStack>
+          <Flex gap={4}>
+            <Button
+              color={"accent1"}
+              borderWidth={2}
+              px={8}
+              py={10}
+              borderColor={"secondary"}
+              background={"transparent"}
+              _hover={{ bg: "secondary" }}
+              onClick={prevSlide}
+            >
+              <MdKeyboardDoubleArrowLeft />
+            </Button>
+            <Button
+              color={"accent1"}
+              borderWidth={2}
+              px={8}
+              py={10}
+              borderColor={"secondary"}
+              background={"transparent"}
+              _hover={{ bg: "secondary" }}
+              onClick={nextSlide}
+            >
+              <MdKeyboardDoubleArrowRight />
+            </Button>
+          </Flex>
+        </Flex>
+        <Box overflow="hidden" w="full" mb={14}>
+          <Carousel
+            data={slides}
+            currentPage={current}
+            itemsPerPage={itemPerPage}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </Box>
+
+        <PrimaryButton
+          title="Browse Portfolio"
+          icon={<FaArrowRight />}
+          href={PROJECTS_ROUTE}
+          position={"absolute"}
+          bottom={4}
+          right={10}
+        />
+      </Box>
+      <Box
+        as="section"
+        background={"secondary"}
+        // minH="100vh"
+        display={"flex"}
+        alignItems="center"
+        justifyContent="space-between"
+        color="white"
+        flexDir={{ base: "column" }}
+        px={{ base: 6, md: 20, lg: 40 }}
+        py={{ base: 5, md: 16 }}
+        w={"full"}
+        gap={10}
+      >
+        <VStack align={"flex-start"}>
+          <Text color={"accent1"}>|| Favourite Clients</Text>
+          <Text fontSize="6xl" fontWeight="bold" color="white">
+            Work With Trusted Comapny.
+          </Text>
+        </VStack>
+
+        <Flex gap={8} justifyContent={"space-between"}>
+          {company.map((item, index) => (
+            <VStack gap={4} borderWidth={1} p={8} w={"20rem"} h={"auto"} borderColor={"accent1"} key={index}>
+              <Image src={item.image} width={200} height={100} alt={item.title} />
+              <Text color={"accent1"} fontSize="xl" fontWeight="bold">
+                {item.title}
+              </Text>
+            </VStack>
+          ))}
+        </Flex>
+      </Box>
+      <Footer />
+    </Box>
   );
 }
