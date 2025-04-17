@@ -7,7 +7,6 @@ import SecondaryButton from "../button/secondaryBtn";
 import { MdOutlineFileDownload } from "react-icons/md";
 
 const WelcomeMessage = () => {
-
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/resume.pdf";
@@ -20,29 +19,39 @@ const WelcomeMessage = () => {
       position="relative"
       display="flex"
       flexDirection="column"
-      alignItems="flex-start"
-      textAlign="left"
-      width="600px"
+      alignItems={{ base: "center", md: "flex-start" }}
+      textAlign={{ base: "center", md: "left" }}
+      maxW={{ base: "100%", md: "500px" }}
+      px={{ base: 4, md: 0 }}
     >
       <VStack
-        align="flex-start"
+        align={{ base: "center", md: "flex-start" }}
         spacing={4}
         position="relative"
         zIndex={2}
       >
-        <Box bg="white" w="10rem" h="0.5rem" />
-        <Text fontSize="36px" fontWeight="bold" color="white">
+        <Box bg="white" w="8rem" h="0.5rem" />
+        <Text
+          fontSize={{ base: "xl", lg: "36px" }}
+          fontWeight="bold"
+          color="white"
+        >
           Hello! I&apos;m
         </Text>
-        <Text fontSize="6xl" fontWeight="bold" color="white">
+        <Text fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }} fontWeight="bold">
           Victor Ebubechukwu,
         </Text>
-        <Text fontSize="2rem" fontWeight="bold" mb={4} color="white">
+        <Text
+          fontSize={{ base: "xl", lg: "2rem" }}
+          fontWeight="bold"
+          mb={4}
+          color="accent1"
+        >
           Software Engineer (Frontend)
         </Text>
       </VStack>
 
-      <Box position="relative" zIndex={2} color="accent1">
+      <Box position="relative" zIndex={2} color="accent1" mt={4}>
         <Typewriter
           words={[
             "With deep expertise in software architecture, design patterns, and microservices.",
@@ -57,6 +66,7 @@ const WelcomeMessage = () => {
           delaySpeed={1000}
         />
       </Box>
+
       <SecondaryButton
         title="Get Resume"
         border={"accent1"}

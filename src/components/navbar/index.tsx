@@ -37,8 +37,8 @@ const NavLink = ({
       _hover={{ textDecoration: "none" }}
       href={href}
       className="nav_links"
-      fontSize={"1.25rem"}
-      color={isActive ? "accent1" : "inherit"}
+      fontSize={{base: "1rem", lg: "1.25rem"}}
+      color={isActive ? "inherit" : "accent1"}
       fontWeight={isActive ? "bold" : "normal"}
     >
       {children}
@@ -51,11 +51,11 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <Box className="px-[6rem] md:px-[10rem] py-[3rem] md:py-[3rem]">
+    <Box className="px-[2rem] lg:px-[10rem] py-[1.5rem] md:py-[3rem]">
       <Flex
         h={16}
         alignItems="center"
-        justifyContent="space-evenly"
+        justifyContent="space-between"
         px={{ base: "1rem", md: "2rem" }}
       >
         <Link href={HOME_ROUTE}>
@@ -67,20 +67,20 @@ const Navbar = () => {
           />
         </Link>
 
-        <HStack alignItems="center" className="flex" spacing={20}>
-          <HStack as="nav" gap={7} display={{ base: "none", md: "flex" }}>
+        <HStack alignItems="center" className="flex" gap={20} justifyContent={"space-between"}>
+          <HStack as="nav" gap={{base: 4, lg: 7}} display={{ base: "none", md: "flex" }}>
             {menuItems.map((link) => (
               <NavLink key={link.name} href={link.url}>
                 {link.name}
               </NavLink>
             ))}
-          </HStack>
           <SecondaryButton
             title="Hire Me"
             border={"accent1"}
             onClick={() => router.push(CONTACT_ROUTE)}
             icon={<MdKeyboardDoubleArrowRight />}
           />
+          </HStack>
           <IconButton
             size="md"
             icon={isOpen ? <IoMdClose /> : <TiThMenu />}

@@ -45,8 +45,8 @@ export default function Projects() {
           </Text>
           <Box
             borderRadius={"full"}
-            px={"3rem"}
-            py={"2rem"}
+            px={{base: "2rem", xl: "3rem"}}
+            py={{base : "1rem", xl: "2rem"}}
             display={"flex"}
             gap={2}
             bg={"background"}
@@ -68,7 +68,7 @@ export default function Projects() {
         alignItems="center"
         justifyContent="center"
         color="white"
-        px={{ base: 6, md: 20, lg: 40 }}
+        px={{ base: 6, md: 10, lg: 20, xl: 40 }}
         py={{ base: 5, md: 16 }}
         display={"flex"}
         flexDir={{ base: "column" }}
@@ -76,7 +76,7 @@ export default function Projects() {
       >
         <VStack align={"flex-start"}>
           <Text color={"accent1"}>|| Awesome Portfolio</Text>
-          <Text fontSize="6xl" fontWeight="bold" color="white">
+          <Text fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }} fontWeight="bold">
             My Projects
           </Text>
           <Text fontSize="lg" color="#f1f1f1">
@@ -91,7 +91,7 @@ export default function Projects() {
             <VStack key={index} w={"full"}>
               <Box
                 position="relative"
-                height="500px"
+                height={{base: "300px", xl:"500px"}}
                 width="100%"
                 backgroundImage={`url("/images/darkbg.jpg")`}
                 backgroundSize="cover"
@@ -107,7 +107,7 @@ export default function Projects() {
                   src={item.image}
                   alt={item.title}
                   maxH="90%"
-                  maxW="80%"
+                  maxW={{base: "95%", xl: "80%"}}
                   objectFit="contain"
                   position="absolute"
                   bottom={0}

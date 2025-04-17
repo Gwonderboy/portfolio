@@ -9,13 +9,7 @@ import ProfileSection from "@/components/ProfileSection";
 import SkillCategory from "@/components/SkillCategory";
 import WelcomeMessage from "@/components/welcomeText";
 import { PROJECTS_ROUTE } from "@/constants/routes";
-import {
-  Box,
-  Button,
-  Flex,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
@@ -45,15 +39,16 @@ export default function Home() {
     <Box>
       <Navbar />
       <Flex
-        bg="pimary"
-        minH="100vh"
+        bg="primary"
         alignItems="center"
-        justifyContent="space-between"
-        px={{ base: 6, md: 20, lg: 40 }}
-        py={{ base: 5, md: 10 }}
+        justifyContent="center"
+        px={{ base: 6, md: 10, lg: 20, xl: 40 }}
+        py={{ base: 10, md: 20 }}
         color="white"
         position="relative"
-        flexDir={{ base: "column", md: "row" }}
+        flexDir={{ base: "column", lg: "row" }}
+        gap={{ base: "3rem", lg: 0 }}
+        textAlign={{ base: "center", md: "left" }}
       >
         <WelcomeMessage />
         <ProfileSection />
@@ -69,20 +64,24 @@ export default function Home() {
       >
         <Box
           background={"background"}
-          w={{ base: "100%", md: "80%" }}
-          px={{ base: 6, md: 20, lg: 40 }}
+          w={{ base: "100%", lg: "80%" }}
+          px={{ base: 6, md: 10, lg: 20, xl: 40 }}
           py={{ base: 5, md: 16 }}
           display={"flex"}
           flexDir={"column"}
           gap={10}
         >
           <Text color={"accent1"}>|| Special Skills</Text>
-          <Text fontSize="6xl" fontWeight="bold" color="white">
+          <Text
+            fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
+            fontWeight="bold"
+          >
             My Special Skill Field Here.
           </Text>
-          <Box overflow="hidden" w="full">
+          <Box overflowX="auto" w="full">
             <Flex
               gap={8}
+              minW="max-content"
               transform={`translateX(-${
                 currentPage * itemsPerPage * slideWidth
               }px)`}
@@ -99,7 +98,7 @@ export default function Home() {
             </Flex>
           </Box>
         </Box>
-        <Box w={{ base: "100%", md: "20%" }} p={4}>
+        <Box w={{ base: "100%", lg: "20%" }} display={{ base: "none", lg: "block" }} p={4}>
           <VStack justify="center" mt={6} gap={8}>
             {Array.from({ length: totalPages }).map((_, idx) => (
               <Box
@@ -126,7 +125,7 @@ export default function Home() {
         flexDir={{ base: "column" }}
         position="relative"
         zIndex={1}
-        px={{ base: 6, md: 20, lg: 40 }}
+        px={{ base: 6, md: 10, lg: 20, xl: 40 }}
         py={{ base: 5, md: 16 }}
         w={"full"}
         gap={10}
@@ -134,16 +133,23 @@ export default function Home() {
         <Flex justifyContent={"space-between"} mb={10} w={"full"}>
           <VStack align={"flex-start"}>
             <Text color={"accent1"}>|| Awesome Portfolio</Text>
-            <Text fontSize="6xl" fontWeight="bold" color="white">
+            <Text
+              fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
+              fontWeight="bold"
+            >
               My Projects
             </Text>
           </VStack>
-          <Flex gap={4}>
+          <Flex
+            gap={4}
+            direction={{ base: "column", sm: "row" }}
+            align={{ base: "stretch", sm: "center" }}
+          >
             <Button
               color={"accent1"}
               borderWidth={2}
-              px={8}
-              py={10}
+              px={{base: 4, md: 8}}
+              py={{base: 6, md: 10}}
               borderColor={"secondary"}
               background={"transparent"}
               _hover={{ bg: "secondary" }}
@@ -154,8 +160,8 @@ export default function Home() {
             <Button
               color={"accent1"}
               borderWidth={2}
-              px={8}
-              py={10}
+              px={{base: 4, md: 8}}
+              py={{base: 6, md: 10}}
               borderColor={"secondary"}
               background={"transparent"}
               _hover={{ bg: "secondary" }}
@@ -177,9 +183,11 @@ export default function Home() {
           title="Browse Portfolio"
           icon={<FaArrowRight />}
           href={PROJECTS_ROUTE}
-          position={"absolute"}
-          bottom={4}
-          right={10}
+          position={{ base: "static", md: "absolute" }}
+          bottom={{ md: 4 }}
+          right={{ md: 16 }}
+          alignSelf={{ base: "center", md: "auto" }}
+          mt={{ base: 4, md: 0 }}
         />
       </Box>
       <Box
@@ -191,28 +199,44 @@ export default function Home() {
         justifyContent="space-between"
         color="white"
         flexDir={{ base: "column" }}
-        px={{ base: 6, md: 20, lg: 40 }}
+        px={{ base: 6, md: 10, lg: 20, xl: 40 }}
         py={{ base: 5, md: 16 }}
         w={"full"}
         gap={10}
       >
         <VStack align={"flex-start"}>
           <Text color={"accent1"}>|| Favourite Clients</Text>
-          <Text fontSize="6xl" fontWeight="bold" color="white">
+          <Text
+            fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
+            fontWeight="bold"
+          >
             Work With Trusted Comapny.
           </Text>
         </VStack>
 
-        <Flex gap={8} justifyContent={"space-between"}>
+        <SimpleGrid minChildWidth="250px" spacing={8} w="full">
           {company.map((item, index) => (
-            <VStack gap={4} borderWidth={1} p={8} w={"20rem"} h={"auto"} borderColor={"accent1"} key={index}>
-              <Image src={item.image} width={200} height={100} alt={item.title} />
+            <VStack
+              gap={4}
+              borderWidth={1}
+              p={8}
+              w={"full"}
+              h={"auto"}
+              borderColor={"accent1"}
+              key={index}
+            >
+              <Image
+                src={item.image}
+                width={200}
+                height={100}
+                alt={item.title}
+              />
               <Text color={"accent1"} fontSize="xl" fontWeight="bold">
                 {item.title}
               </Text>
             </VStack>
           ))}
-        </Flex>
+        </SimpleGrid>
       </Box>
       <Footer />
     </Box>

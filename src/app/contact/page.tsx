@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/navbar";
 import SocialIcon from "@/components/SocialIcon";
 import { HOME_ROUTE } from "@/constants/routes";
+import { HttpError } from "@/interfaces/https";
 import {
   Box,
   VStack,
@@ -16,6 +17,7 @@ import {
   useToast,
   Flex,
   Link,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { useState, ChangeEvent } from "react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
@@ -23,6 +25,7 @@ import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 interface FormData {
   name: string;
   email: string;
+  subject: string;
   message: string;
 }
 
@@ -30,6 +33,7 @@ export default function Contact() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
+    subject: "",
     message: "",
   });
   const toast = useToast();
@@ -41,9 +45,9 @@ export default function Contact() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleEmailLink = () => {
-    const { name, email, message } = formData;
-    if (!name || !email || !message) {
+  const handleEmailLink = async () => {
+    const { name, email, subject, message } = formData;
+    if (!name || !email || !subject || !message) {
       toast({
         title: "Please fill out all fields",
         status: "error",
@@ -52,23 +56,48 @@ export default function Contact() {
       });
       return;
     }
-
-    const subject = encodeURIComponent("Contact Form Submission");
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
-    const mailtoLink = `mailto:vebubechukwu@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink;
-
-    // Clear form fields after sending the email
-    setFormData({ name: "", email: "", message: "" });
-    toast({
-      title: "Message sent!",
-      description: "Your email has been opened for sending.",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
+  
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+  
+      if (res.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for reaching out. I'll get back to you shortly.",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error("Failed to send");
+      }
+    } catch (error: unknown) {
+      if (error && typeof error === 'object' && 'response' in error) {
+        const httpError = error as HttpError;
+        toast({
+          title: "Error",
+          description: httpError.response.data.message || "Something went wrong. Please try again later.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again later.",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+    }
   };
 
   return (
@@ -102,8 +131,8 @@ export default function Contact() {
           </Text>
           <Box
             borderRadius={"full"}
-            px={"3rem"}
-            py={"2rem"}
+            px={{ base: "2rem", xl: "3rem" }}
+            py={{ base: "1rem", xl: "2rem" }}
             display={"flex"}
             gap={2}
             bg={"background"}
@@ -125,9 +154,10 @@ export default function Contact() {
         alignItems="center"
         justifyContent="space-between"
         color="white"
-        px={{ base: 6, md: 20, lg: 40 }}
+        px={{ base: 6, md: 10, lg: 20, xl: 40 }}
         py={{ base: 5, md: 16 }}
         flexDir={{ base: "column", md: "row" }}
+        gap={{ base: 10 }}
       >
         <Box
           w={{ base: "100%", md: "25%" }}
@@ -205,7 +235,10 @@ export default function Contact() {
         >
           <VStack align={"flex-start"}>
             <Text color={"accent1"}>|| Get in Touch</Text>
-            <Text fontSize="6xl" fontWeight="bold" color="white">
+            <Text
+              fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
+              fontWeight="bold"
+            >
               If you have any porject or need help. Contact me
             </Text>
             <Text color="accent1">
@@ -214,29 +247,45 @@ export default function Contact() {
             </Text>
           </VStack>
           <VStack alignItems={"flex-start"} gap={6} mt={{ base: 4, md: 8 }}>
-            <FormControl id="name">
-              <FormLabel color="text">Name</FormLabel>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8} w={"full"}>
+              <FormControl id="name">
+                <FormLabel color="text">Name</FormLabel>
+                <Input
+                  p={6}
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your Name"
+                  bg="transparent"
+                  color="text"
+                />
+              </FormControl>
+
+              <FormControl id="email">
+                <FormLabel color="text">Email</FormLabel>
+                <Input
+                  p={6}
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Your Email"
+                  bg="transparent"
+                  color="text"
+                />
+              </FormControl>
+            </SimpleGrid>
+
+            <FormControl id="subject">
+              <FormLabel color="text">Subject</FormLabel>
               <Input
                 p={6}
                 type="text"
-                name="name"
-                value={formData.name}
+                name="subject"
+                value={formData.subject}
                 onChange={handleChange}
-                placeholder="Your Name"
-                bg="transparent"
-                color="text"
-              />
-            </FormControl>
-
-            <FormControl id="email">
-              <FormLabel color="text">Email</FormLabel>
-              <Input
-                p={6}
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Your Email"
+                placeholder="Title of Message"
                 bg="transparent"
                 color="text"
               />

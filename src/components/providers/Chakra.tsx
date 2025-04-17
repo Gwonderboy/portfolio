@@ -7,7 +7,7 @@ const pallets = {
   primary: "#0a0a0a", // dark blackish color
   secondary: "#2c2c2c", // muted dark grey
   background: "#383737", // light grey background
-  accent1: "#f2f2f2", // light grey
+  accent1: "#e7e7e7",
   accent2: "#3a4a72", // muted deep blue
   accent3: "#0a5fe4", // vibrant blue
   text: "#ffffff", // white text
