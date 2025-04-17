@@ -9,9 +9,7 @@ import {
   Text,
   VStack,
   Link,
-  Icon,
   Image,
-  HStack,
 } from "@chakra-ui/react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 

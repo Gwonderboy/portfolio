@@ -4,11 +4,8 @@ import {
   Box,
   Text,
   VStack,
-  Divider,
   SimpleGrid,
   Link,
-  Icon,
-  Button,
   HStack,
   Grid,
   GridItem,
@@ -16,8 +13,8 @@ import {
   ListItem,
   UnorderedList,
 } from "@chakra-ui/react";
-import { FaGithub, FaLinkedin, FaMoneyCheckAlt, FaTools } from "react-icons/fa";
-import { FaCloud, FaDatabase, FaXTwitter } from "react-icons/fa6";
+import { FaMoneyCheckAlt, FaTools } from "react-icons/fa";
+import { FaCloud, FaDatabase } from "react-icons/fa6";
 import Navbar from "@/components/navbar";
 import { GrTechnology } from "react-icons/gr";
 import { MdHub, MdOutlineFileDownload } from "react-icons/md";
@@ -30,31 +27,6 @@ import { educationData, experienceData } from "@/_data/backgroundData";
 import React from "react";
 import Footer from "@/components/Footer";
 
-const SocialLink = ({
-  href,
-  icon,
-  label,
-}: {
-  href: string;
-  icon: React.ReactElement;
-  label: string;
-}) => (
-  <Link
-    href={href}
-    isExternal
-    display="flex"
-    alignItems="center"
-    gap={2}
-    color="text"
-    fontWeight="semibold"
-    _hover={{ color: "primary" }}
-  >
-    <Icon boxSize={5} color="primary">
-      {icon}
-    </Icon>
-    <Text>{label}</Text>
-  </Link>
-);
 
 type EducationItem = {
   year: string;

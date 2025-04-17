@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Typewriter } from "react-simple-typewriter";
-import { Box, Button, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 import SecondaryButton from "../button/secondaryBtn";
 import { MdOutlineFileDownload } from "react-icons/md";
 

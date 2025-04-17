@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Box, Icon, Image, Link } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import SocialIcon from "./SocialIcon";
 

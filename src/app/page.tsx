@@ -13,10 +13,6 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
-  Icon,
-  Link,
-  SimpleGrid,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -24,7 +20,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import {
-  MdHub,
   MdKeyboardDoubleArrowLeft,
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
