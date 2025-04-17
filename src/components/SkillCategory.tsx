@@ -10,7 +10,7 @@ interface SkillCategoryProps {
 }
 
 const SkillCategory = ({ icon, title, skills }: SkillCategoryProps) => (
-  <Box minW={{ base: "100%", md: "20rem" }} bg={"primary"} p={{ base: 6, sm: 8, md: 10, lg: 20 }} display={"flex"} flexDir={"column"} gap={{ base: 6, md: 10 }}>
+  <Box minW={{ base: "15rem", md: "20rem" }} bg={"primary"} p={{ base: 6, sm: 8, md: 10, lg: 20 }} display={"flex"} flexDir={"column"} gap={{ base: 6, md: 10 }}>
     {icon && <Icon as={icon} boxSize={"3.5rem"} color="white" mb={2} />}
 
     <Text fontSize="lg" fontWeight="600" mb={2}>
