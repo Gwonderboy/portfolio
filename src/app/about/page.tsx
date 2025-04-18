@@ -6,12 +6,12 @@ import {
   VStack,
   SimpleGrid,
   Link,
-  HStack,
   Grid,
   GridItem,
   useColorModeValue,
   ListItem,
   UnorderedList,
+  Flex,
 } from "@chakra-ui/react";
 import { FaMoneyCheckAlt, FaTools } from "react-icons/fa";
 import { FaCloud, FaDatabase } from "react-icons/fa6";
@@ -26,7 +26,6 @@ import { useState } from "react";
 import { educationData, experienceData } from "@/_data/backgroundData";
 import React from "react";
 import Footer from "@/components/Footer";
-
 
 type EducationItem = {
   year: string;
@@ -92,8 +91,8 @@ export default function About() {
           </Text>
           <Box
             borderRadius={"full"}
-            px={{base: "2rem", xl: "3rem"}}
-            py={{base : "1rem", xl: "2rem"}}
+            px={{ base: "2rem", xl: "3rem" }}
+            py={{ base: "1rem", xl: "2rem" }}
             display={"flex"}
             gap={2}
             bg={"background"}
@@ -115,6 +114,7 @@ export default function About() {
         alignItems="center"
         justifyContent="space-between"
         color="white"
+        gap={{base: "2rem"}}
         px={{ base: 6, md: 10, lg: 20, xl: 40 }}
         py={{ base: 5, md: 16 }}
         flexDir={{ base: "column", md: "row" }}
@@ -153,7 +153,10 @@ export default function About() {
           mb={8}
           w={{ base: "100%", md: "55%" }}
         >
-          <Text fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }} fontWeight="bold">
+          <Text
+            fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
+            fontWeight="bold"
+          >
             I&apos;m Victor
           </Text>
           <Text fontSize="2rem" fontWeight="bold" mb={4} color="gray.500">
@@ -176,14 +179,20 @@ export default function About() {
         px={{ base: 6, md: 10, lg: 20, xl: 40 }}
         py={{ base: 5, md: 16 }}
       >
-        <HStack spacing={6} mb={16} w={"full"}>
+        <Flex
+          gap={6}
+          mb={16}
+          w={"full"}
+          justifyContent={"space-between"}
+          flexDir={{ base: "column", md: "row" }}
+        >
           <Box
             w={"full"}
             color={"white"}
             borderColor={"secondary"}
             borderWidth={2}
-            px={"3rem"}
-            py={"2rem"}
+            px={{ base: "2rem", xl: "3rem" }}
+            py={{ base: "1rem", xl: "2rem" }}
             cursor={"pointer"}
             textAlign={"center"}
             fontSize={{ base: "2xl", md: "3xl" }}
@@ -199,8 +208,8 @@ export default function About() {
             color={"white"}
             borderColor={"secondary"}
             borderWidth={2}
-            px={"3rem"}
-            py={"2rem"}
+            px={{ base: "2rem", xl: "3rem" }}
+            py={{ base: "1rem", xl: "2rem" }}
             cursor={"pointer"}
             textAlign={"center"}
             fontSize={{ base: "2xl", md: "3xl" }}
@@ -211,7 +220,7 @@ export default function About() {
           >
             Work Experience
           </Box>
-        </HStack>
+        </Flex>
 
         <Grid
           templateColumns={{ base: "1fr", md: "200px 1fr" }}
@@ -223,7 +232,7 @@ export default function About() {
             position="absolute"
             top={0}
             bottom={0}
-            left={{ base: "0", md: "200px" }}
+            left={{ base: "-1.5rem", md: "200px" }}
             zIndex={0}
             _before={{
               content: '""',
@@ -311,11 +320,18 @@ export default function About() {
       >
         <VStack align={"flex-start"}>
           <Text color={"accent1"}>|| Special Skills</Text>
-          <Text fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }} fontWeight="bold">
+          <Text
+            fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
+            fontWeight="bold"
+          >
             Technical Expertise
           </Text>
         </VStack>
-        <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={8} color={"#f1f1f1"}>
+        <SimpleGrid
+          columns={{ base: 1, md: 2, xl: 3 }}
+          spacing={8}
+          color={"#f1f1f1"}
+        >
           <SkillCategory
             icon={GrTechnology}
             title="Technologies"
