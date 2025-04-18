@@ -53,8 +53,8 @@ const Footer = () => {
             <VStack align="start">
               <Text fontWeight="semibold" mb={2}>Connect</Text>
               <Link href="mailto:ebubecode.dev@gmail.com" {...linkStyles}>Email</Link>
-              <Link href="#" {...linkStyles}>Newsletter</Link>
-              <Link href="#" {...linkStyles}>Blog</Link>
+              {/* <Link href="#" {...linkStyles}>Newsletter</Link>
+              <Link href="#" {...linkStyles}>Blog</Link> */}
             </VStack>
           </HStack>
         </Flex>
