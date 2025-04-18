@@ -210,17 +210,17 @@ export default function Contact() {
           <Box
             background={"primary"}
             w="full"
-            px={{ base: 2, md: 4, lg: 8 }}
+            px={{ base: 3, md: 6, lg: 8 }}
             py={{ base: 4, md: 8 }}
             display={"flex"}
             flexDir={"column"}
             gap={10}
           >
-            <Text fontWeight={"semibold"} fontSize={"5xl"}>
+            <Text fontWeight={"semibold"} fontSize={{base: "3xl", md: "5xl"}}>
               Follow Me
             </Text>
 
-            <Flex gap={5}>
+            <Flex gap={5} justifyContent={"space-between"}>
               {icons.map((item, index) => (
                 <SocialIcon key={index} icon={item.icon} href={item.href} />
               ))}
@@ -239,7 +239,7 @@ export default function Contact() {
               fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
               fontWeight="bold"
             >
-              If you have any porject or need help. Contact me
+              If you have any project or need help. Contact me
             </Text>
             <Text color="accent1">
               I&apos;d love to hear from you! Fill out the form below, and
