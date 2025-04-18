@@ -1,24 +1,10 @@
 export const educationData = [
   {
-    year: "2009 - 2010",
-    title: "Bachelor of Business Administration",
-    school: "University of California, Berkeley",
+    year: "2016 – 2019",
+    title: "Bachelor of Science",
+    school: "University of Nigeria Nsukka, Enugu State",
     description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-  },
-  {
-    year: "2012 - 2014",
-    title: "Masters of Business Administration",
-    school: "University of California, Berkeley",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-  },
-  {
-    year: "2015 - 2018",
-    title: "Bachelor of Graphic Arts",
-    school: "University of California, Berkeley",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
+      "Sociology and Anthropology",
   },
 ];
 
