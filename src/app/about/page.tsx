@@ -159,10 +159,10 @@ export default function About() {
           >
             I&apos;m Victor
           </Text>
-          <Text fontSize="2rem" fontWeight="bold" mb={4} color="gray.500">
+          <Text fontSize={{base: "1rem", md: "2rem"}} fontWeight="bold" mb={4} color="gray.500">
             Software Engineer (Frontend)
           </Text>
-          <Text fontSize="lg" color={"gray.500"}>
+          <Text fontSize={{base: "md", md: "lg"}} color={"gray.500"}>
             Experienced Software Engineer with expertise in software
             architecture, design patterns, and microservices. I am committed to
             building high-quality software solutions that ensure efficiency,
