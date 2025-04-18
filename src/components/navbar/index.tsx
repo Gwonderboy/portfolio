@@ -51,7 +51,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <Box className="px-[2rem] lg:px-[10rem] py-[1.5rem] md:py-[3rem]">
+    <Box className="px-[1rem] md:px-3rem lg:px-[10rem] py-[1.5rem] md:py-[3rem]">
       <Flex
         h={16}
         alignItems="center"
@@ -87,8 +87,14 @@ const Navbar = () => {
             aria-label="Toggle Menu"
             display={{ md: "none" }}
             onClick={onToggle}
-            fontSize={"2rem"}
+            transition="all 0.3s ease-in-out"
+            fontSize={"1.5rem"}
+            justifyItems={"center"}
             alignItems={"center"}
+            transform={isOpen ? "rotate(180deg)" : "rotate(0deg)"}
+            _hover={{
+              transform: isOpen ? "rotate(180deg) scale(1.1)" : "rotate(0deg) scale(1.1)"
+            }}
           />
         </HStack>
       </Flex>
