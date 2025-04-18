@@ -210,7 +210,7 @@ export default function Home() {
             fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
             fontWeight="bold"
           >
-            Work With Trusted Comapny.
+            Work With Trusted Company.
           </Text>
         </VStack>
 
