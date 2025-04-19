@@ -41,44 +41,44 @@ export const slides = [
     title: "MykroGrid Client",
     description:
       "This electricity application enables customers to register, purchase kilowatts using paystack, and monitor usage in real time.",
-    image: "/images/projects/mykrogrid.png",
+    image: "/images/projects/mykrogrid.webp",
   },
   {
     title: "MykroGrid Control Center",
     description:
       "This application enables engineers to monitor solar generation and distribution metrics; smart meter consumption; grids location, status and performance based and weather; faults and fault codes for different grids, etc. ",
-    image: "/images/projects/mykrogridcc.png",
+    image: "/images/projects/mykrogridcc.webp",
   },
   {
     title: "Gloopro",
     description:
       "A leading eProcurement platform empowering large enterprises to streamline indirect spend management, with features like supply chain visibility and multi-location support.",
-    image: "/images/projects/gloopro.png",
+    image: "/images/projects/gloopro.webp",
   },
   {
     title: "Edumate",
     description:
       "A comprehensive K-12 education management platform that bridges schools, parents, and students, enabling seamless information sharing and student wellbeing tracking.",
-    image: "/images/projects/edumate.png",
+    image: "/images/projects/edumate.webp",
   },
   {
     title: "Energy Chleen",
     description:
       "The Energy-C application is a green-tech app thatprovides a platform where users get value for their used/waste non-biodegradable materials.",
-    image: "/images/projects/energyc.png",
+    image: "/images/projects/energyc.webp",
   },
   {
     title: "OJP Quiz Cohort",
     description:
       "The OJP Tech Quiz Competition is designed exclusively for individuals with little to no technology background who are eager to start their journey into tech. Individuals participate for a chance to win exciting prizes.",
-    image: "/images/projects/quizcohort.png",
+    image: "/images/projects/quizcohort.webp",
   },
 ];
 
 export const company = [
   {
     title: "MykroGrid",
-    image: "/images/mykrogrid.png",
+    image: "/images/mykrogrid.webp",
   },
   {
     title: "Gloopro",
@@ -86,10 +86,10 @@ export const company = [
   },
   {
     title: "Edumate",
-    image: "/images/edumate.png",
+    image: "/images/edumate.webp",
   },
   {
     title: "OJP Technologies",
-    image: "/images/OJPLogo.jpg",
+    image: "/images/OJPLogobg.webp",
   },
 ];

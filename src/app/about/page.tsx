@@ -130,11 +130,11 @@ export default function About() {
         >
           <div className="w-full max-w-md mx-auto border-2 border-white overflow-hidden rounded-md">
             <Image
-              src="/images/profile.jpg"
+              src="/images/profile.webp"
               alt="Profile pic"
               width={500}
               height={500}
-              priority
+              loading="lazy"
               className="w-full h-full object-cover object-top"
             />
           </div>

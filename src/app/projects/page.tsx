@@ -3,14 +3,8 @@ import SecondaryButton from "@/components/button/secondaryBtn";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/navbar";
 import { HOME_ROUTE } from "@/constants/routes";
-import {
-  Box,
-  SimpleGrid,
-  Text,
-  VStack,
-  Link,
-  Image,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid, Text, VStack, Link } from "@chakra-ui/react";
+import Image from "next/image";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 export default function Projects() {
@@ -45,8 +39,8 @@ export default function Projects() {
           </Text>
           <Box
             borderRadius={"full"}
-            px={{base: "2rem", xl: "3rem"}}
-            py={{base : "1rem", xl: "2rem"}}
+            px={{ base: "2rem", xl: "3rem" }}
+            py={{ base: "1rem", xl: "2rem" }}
             display={"flex"}
             gap={2}
             bg={"background"}
@@ -76,7 +70,10 @@ export default function Projects() {
       >
         <VStack align={"flex-start"}>
           <Text color={"accent1"}>|| Awesome Portfolio</Text>
-          <Text fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }} fontWeight="bold">
+          <Text
+            fontSize={{ base: "3xl", md: "4xl", lg: "6xl" }}
+            fontWeight="bold"
+          >
             My Projects
           </Text>
           <Text fontSize="lg" color="#f1f1f1">
@@ -91,9 +88,9 @@ export default function Projects() {
             <VStack key={index} w={"full"}>
               <Box
                 position="relative"
-                height={{base: "300px", xl:"500px"}}
+                height={{ base: "300px", xl: "500px" }}
                 width="100%"
-                backgroundImage={`url("/images/darkbg.jpg")`}
+                backgroundImage={`url("/images/darkbg.webp")`}
                 backgroundSize="cover"
                 backgroundPosition="center"
                 display="flex"
@@ -103,16 +100,24 @@ export default function Projects() {
                 overflow="hidden"
                 borderRadius="lg"
               >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  maxH="90%"
-                  maxW={{base: "95%", xl: "80%"}}
-                  objectFit="contain"
+                <Box
                   position="absolute"
                   bottom={0}
                   zIndex={2}
-                />
+                  width={{ base: "95%", xl: "80%" }}
+                  height="90%"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    style={{
+                      objectFit: "contain",
+                    }}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 95vw, 80vw"
+                  />
+                </Box>
               </Box>
 
               <VStack spacing={2} textAlign="center" px={4}>

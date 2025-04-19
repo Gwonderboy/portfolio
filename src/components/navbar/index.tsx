@@ -60,10 +60,11 @@ const Navbar = () => {
       >
         <Link href={HOME_ROUTE}>
           <Image
-            src="/images/logo-light.png"
+            src="/images/logo-light.webp"
             width={200}
             height={60}
             alt="logo"
+            loading="lazy"
           />
         </Link>
 

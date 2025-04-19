@@ -32,10 +32,11 @@ const Footer = () => {
         >
           <Box>
             <Image
-              src="/images/logo-light.png"
+              src="/images/logo-light.webp"
               width={200}
               height={60}
               alt="logo"
+              loading="lazy"
             />
             <Text fontSize="sm" color="accent1" mt={2}>
               Bringing ideas to life with clean code and creative design.

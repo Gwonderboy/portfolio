@@ -9,7 +9,7 @@ import ProfileSection from "@/components/ProfileSection";
 import SkillCategory from "@/components/SkillCategory";
 import WelcomeMessage from "@/components/welcomeText";
 import { PROJECTS_ROUTE } from "@/constants/routes";
-import { Box, Button, Flex, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, IconButton, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
@@ -145,19 +145,10 @@ export default function Home() {
             direction={{ base: "column", sm: "row" }}
             align={{ base: "stretch", sm: "center" }}
           >
-            <Button
-              color={"accent1"}
-              borderWidth={2}
-              px={{base: 4, md: 8}}
-              py={{base: 6, md: 10}}
-              borderColor={"secondary"}
-              background={"transparent"}
-              _hover={{ bg: "secondary" }}
+            <IconButton
+              aria-label="Previous"
+              icon={<MdKeyboardDoubleArrowLeft />}
               onClick={prevSlide}
-            >
-              <MdKeyboardDoubleArrowLeft />
-            </Button>
-            <Button
               color={"accent1"}
               borderWidth={2}
               px={{base: 4, md: 8}}
@@ -165,10 +156,19 @@ export default function Home() {
               borderColor={"secondary"}
               background={"transparent"}
               _hover={{ bg: "secondary" }}
+            />
+            <IconButton
+              aria-label="Previous"
+              icon={<MdKeyboardDoubleArrowRight />}
               onClick={nextSlide}
-            >
-              <MdKeyboardDoubleArrowRight />
-            </Button>
+              color={"accent1"}
+              borderWidth={2}
+              px={{base: 4, md: 8}}
+              py={{base: 6, md: 10}}
+              borderColor={"secondary"}
+              background={"transparent"}
+              _hover={{ bg: "secondary" }}
+            />
           </Flex>
         </Flex>
         <Box overflow="hidden" w="full" mb={14}>
@@ -230,6 +230,7 @@ export default function Home() {
                 width={200}
                 height={100}
                 alt={item.title}
+                loading="lazy"
               />
               <Text color={"accent1"} fontSize="xl" fontWeight="bold">
                 {item.title}
